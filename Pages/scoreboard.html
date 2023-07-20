@@ -28,17 +28,17 @@
 
   <button id="delete-highscores">Highscores löschen</button>
 
-<div class="button-container">
-  <a href="/Quiztopia/Pages/start.html">
-    <button id="new-quiz-button">Neues Quiz</button>
-  </a>
+  <div class="button-container">
+    <a href="/Quiztopia/Pages/start.html">
+      <button id="new-quiz-button">Neues Quiz</button>
+    </a>
 
-  <button id="repeat-button" onclick="window.history.back()">Wiederholen</button>
+    <button id="repeat-button" onclick="goBackAndRefresh()">Wiederholen</button>
 
-  <a href="/Quiztopia/Pages/ending.html">
-    <button id="ending-quiz">Quiz beenden</button>
-  </a>
-</div>
+    <a href="/Quiztopia/Pages/ending.html">
+      <button id="ending-quiz">Quiz beenden</button>
+    </a>
+  </div>
 
   <script>
     // Funktion zum Laden und Anzeigen der Highscore-Daten
@@ -78,6 +78,16 @@
       }
     }
 
+    function goBackAndRefresh() {
+      // Zurück zur vorherigen Seite navigieren
+      window.history.back();
+
+      // Die Seite aktualisieren mit einer kurzen Verzögerung von 100ms
+      setTimeout(() => {
+        location.reload();
+      }, 100);
+    }
+
     // Funktion zum Löschen der Highscore-Daten
     function deleteHighscores() {
       localStorage.removeItem('highscoreData');
@@ -90,6 +100,6 @@
     // Event Listener für den Klick auf den Löschen-Button
     document.getElementById('delete-highscores').addEventListener('click', deleteHighscores);
   </script>
-  <footer class="footer">© 2023 by Andreas Brühl, Jason Krimmel und Sebastian Hufeld</footer>  
+  <footer class="footer">© 2023-${new Date().getFullYear()} by Andreas Brühl, Jason Krimmel und Sebastian Hufeld</footer>  
 </body>
 </html>
