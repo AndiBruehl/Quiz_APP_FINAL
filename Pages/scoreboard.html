@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Quiztopia | Scoreboard</title>
@@ -80,19 +80,24 @@
     }
 
     function goBackAndRefresh() {
-  // Speichere den Status der aktuellen Seite
-  localStorage.setItem('pageState', JSON.stringify(window.location.href));
+      // Speichere den Status der aktuellen Seite
+      localStorage.setItem('pageState', JSON.stringify(window.location.href));
 
-  // Zurück zur vorherigen Seite navigieren
-  window.history.back();
-}
+      // Zurück zur vorherigen Seite navigieren
+      window.history.back();
+    }
 
-// Überprüfen, ob die Seite neu geladen wurde und den Status wiederherstellen
-if (localStorage.getItem('pageState')) {
-  const pageState = JSON.parse(localStorage.getItem('pageState'));
-  localStorage.removeItem('pageState');
-  window.location.href = pageState;
-}
+    // Überprüfen, ob die Seite neu geladen wurde und den Status wiederherstellen
+    if (localStorage.getItem('pageState')) {
+      const pageState = JSON.parse(localStorage.getItem('pageState'));
+      localStorage.removeItem('pageState');
+
+      // Wenn die Seite neu geladen wurde, leite sie zur gespeicherten URL weiter
+      if (window.location.href === pageState) {
+        window.location.reload();
+      }
+    }
+
     // Funktion zum Löschen der Highscore-Daten
     function deleteHighscores() {
       localStorage.removeItem('highscoreData');
