@@ -79,15 +79,19 @@
     }
 
     function goBackAndRefresh() {
-      // Zurück zur vorherigen Seite navigieren
-      window.history.back();
+  // Speichere den Status der aktuellen Seite
+  localStorage.setItem('pageState', JSON.stringify(window.location.href));
 
-      // Die Seite aktualisieren mit einer kurzen Verzögerung von 100ms
-      setTimeout(() => {
-        location.reload();
-      }, 100);
-    }
+  // Zurück zur vorherigen Seite navigieren
+  window.history.back();
+}
 
+// Überprüfen, ob die Seite neu geladen wurde und den Status wiederherstellen
+if (localStorage.getItem('pageState')) {
+  const pageState = JSON.parse(localStorage.getItem('pageState'));
+  localStorage.removeItem('pageState');
+  window.location.href = pageState;
+}
     // Funktion zum Löschen der Highscore-Daten
     function deleteHighscores() {
       localStorage.removeItem('highscoreData');
