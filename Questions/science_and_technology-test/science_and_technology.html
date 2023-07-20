@@ -58,6 +58,17 @@
         handleStartQuiz();
       }
     });
+            // Event-Handler für das Laden des Dokuments
+            document.addEventListener('DOMContentLoaded', function () {
+            // Funktion zum einmaligen Neuladen der Seite
+            function reloadPageOnce() {
+                // Seite einmalig neu laden
+                window.location.reload();
+            }
+
+            // Nach 5 Sekunden die Seite einmalig neu laden
+            setTimeout(reloadPageOnce, 5000); // 5000 Millisekunden = 5 Sekunden
+        });
   </script>
   <footer class="footer">© 2023 by Andreas Brühl, Jason Krimmel und Sebastian Hufeld</footer>  
 </body>
